@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text, Grid, GridItem, Center } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import { Button } from "@chakra-ui/button";
 import { HamburgerIcon } from "@chakra-ui/icons";
