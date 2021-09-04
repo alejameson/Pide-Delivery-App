@@ -9,12 +9,14 @@ import Navbar from "../Navbar/Navbar";
 import Products from "../Products/Products";
 
 export default function Home() {
+  const [active, setActive] = useState("sandwich"); 
+
   /* Utilizamos useSelector para traernos datos del estado de nuestro store */
   const productsLoaded = useSelector((state) => state.productsLoaded);
 
   const sandwich = productsLoaded.filter((e) => e.idCategoria === 9);
-  const pizza = productsLoaded.filter((e) => e.idCategoria === 7);
-  const fritos = productsLoaded.filter((e) => e.idCategoria === 83);
+  const pizzas = productsLoaded.filter((e) => e.idCategoria === 7);
+  const fritas = productsLoaded.filter((e) => e.idCategoria === 83);
   const combos = productsLoaded.filter((e) => e.idCategoria !== 9 && e.idCategoria !== 7 && e.idCategoria !== 83);
 
   console.log(productsLoaded);
@@ -46,6 +48,7 @@ export default function Home() {
                 variant="link"
                 my={5}
                 w="100%"
+                onClick={() => setActive("sandwich")}
               >
                 Sandwich
               </Button>
@@ -58,6 +61,7 @@ export default function Home() {
                 variant="link"
                 my={5}
                 w="100%"
+                onClick={() => setActive("pizzas")}
               >
                 Pizzas
               </Button>
@@ -70,6 +74,7 @@ export default function Home() {
                 variant="link"
                 my={5}
                 w="100%"
+                onClick={() => setActive("fritas")}
               >
                 Fritas
               </Button>
@@ -83,6 +88,7 @@ export default function Home() {
                 aria-label="Contact"
                 my={5}
                 w="100%"
+                onClick={() => setActive("combos")}
               >
                 Combos
               </Button>
@@ -92,7 +98,22 @@ export default function Home() {
       </Flex>
       {/* Secciones de productos */}
       <Flex>
-        <Products products={productsLoaded} />
+      {active === "sandwich" ? (
+          <Products products={sandwich} />
+      
+          ) : active === "pizzas" ? (
+            <Products products={pizzas} />
+          
+          ) : active === "fritas" ? (
+            <Products products={fritas} />
+          
+          ) : active === "combos" ? (
+            <Products products={combos} />
+
+          ) : (
+            ""
+          )
+      } 
       </Flex>
     </VStack>
   );
